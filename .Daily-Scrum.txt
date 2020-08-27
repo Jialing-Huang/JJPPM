@@ -22,10 +22,20 @@
 
 * Jialing
 1. Done since last scrum:
+	- Finished setup shared Git repository (JJ-PPM) on GitHub
+	- Createed dotnet application with identity and done scaffolding 
 2. To do until next scrum:
+	- Create Project form page
+	- Create Project list page
 3. Issues
+	- NO
 
 * Jeonghoon
 1. Done since last scrum:
+	- Created and Shared the Trello.com board with Jialing
+	- Created user cases draft
 2. To do until next scrum:
+	- Modify user login page and register page
+	- Create Task form page
 3. Issues
+	- NO
