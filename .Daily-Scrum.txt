@@ -1,0 +1,46 @@
+----- 8/26/2020 ------
+
+* Jialing
+1. Done since last scrum:
+	- First scrum
+	- Completed & submitted project proposal draft document
+2. To do until next scrum:
+	- Setup shared Git repository (JJ-PPM) on GitHub
+	- Create dotnet application with identity and scaffolding
+
+* Jeonghoon
+1. Done since last scrum:
+	- First scrum
+	- Finished interface mockup (Home, Project board, Task)
+2. To do until next scrum:
+	- Create and Share the Trello.com board with teammate
+	- Create user case draft
+
+
+
+----- 8/27/2020 -----
+
+* Jialing
+1. Done since last scrum:
+	- Finished setup shared Git repository (JJ-PPM) on GitHub
+	- Createed dotnet application with identity and done scaffolding 
+2. To do until next scrum:
+	- Create Project form page
+	- Create Project list page
+3. Issues
+	- NO
+
+* Jeonghoon
+1. Done since last scrum:
+	- Created and Shared the Trello.com board with Jialing
+	- Created user cases draft
+2. To do until next scrum:
+	- Modify user login page and register page
+	- Create Task form page
+3. Issues
+	- NO
+
+
+
+----- 8/28/2020 -----
+
