@@ -4,13 +4,16 @@ using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
+using JJPPM.Models;
+
 namespace JJPPM.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+  public class ApplicationDbContext : IdentityDbContext
+  {
+    public DbSet<JProject> Projects { get; set; }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
     }
+  }
 }

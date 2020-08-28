@@ -1,0 +1,28 @@
+﻿@page
+@model JJPPM.Pages.ProjectsModel
+@{
+}
+
+<h1 class="display-4">My Projects</h1>
+<a class="btn btn-primary" asp-page="/Create">Create a Project</a>
+
+<body class="container">
+    @foreach (var project in Model.Projects)
+    {
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span9">
+                    <div>@project.ProjectName</div>
+                    <div>@project.Description</div>
+                </div>
+                <div class="span3">
+                    <button>Project Board</button>
+                    <button>Update Project Info</button>
+                    <button>Delete Project</button>
+                </div>
+            </div>
+        </div>
+    }
+
+</body>
+
