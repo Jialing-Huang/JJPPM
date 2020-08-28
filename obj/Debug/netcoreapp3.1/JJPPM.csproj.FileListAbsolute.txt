@@ -192,3 +192,4 @@ D:\___Share with Linux Storages\2020_ASP_Project\JJPPM\obj\Debug\netcoreapp3.1\R
 D:\___Share with Linux Storages\2020_ASP_Project\JJPPM\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 D:\___Share with Linux Storages\2020_ASP_Project\JJPPM\obj\Debug\netcoreapp3.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 D:\___Share with Linux Storages\2020_ASP_Project\JJPPM\obj\Debug\netcoreapp3.1\Razor\Pages\Projects.cshtml.g.cs
+D:\___Share with Linux Storages\2020_ASP_Project\JJPPM\obj\Debug\netcoreapp3.1\Razor\Pages\Create.cshtml.g.cs

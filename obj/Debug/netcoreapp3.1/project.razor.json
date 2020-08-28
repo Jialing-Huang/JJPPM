@@ -14392,6 +14392,11 @@
   "RootNamespace": "JJPPM",
   "Documents": [
     {
+      "FilePath": "d:\\___Share with Linux Storages\\2020_ASP_Project\\JJPPM\\Pages\\Create.cshtml",
+      "TargetPath": "Pages\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\___Share with Linux Storages\\2020_ASP_Project\\JJPPM\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
       "FileKind": "mvc"
