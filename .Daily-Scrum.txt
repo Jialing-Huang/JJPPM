@@ -44,3 +44,23 @@
 
 ----- 8/28/2020 -----
 
+* Jialing
+1. Done since last scrum:
+	- Submitted the final version of proposal
+	- Created Project form page
+	- Created Project list page
+2. To do until next scrum:
+	- Update the project list page
+        - Update the project creating page
+3. Issues
+	- NO
+
+
+* Jeonghoon
+1. Done since last scrum:
+	- Modified user login page and register page
+2. To do until next scrum:
+	- Customize user profile page
+	- Create Task form page
+3. Issues
+	- I need to figure out how to modify default profile page.
