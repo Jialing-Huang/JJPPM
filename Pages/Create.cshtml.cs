@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using JJPPM.Data;
@@ -15,17 +16,17 @@ namespace JJPPM.Pages
         public CreateModel(ApplicationDbContext db) => this.db = db;
 
 
-        // [BindProperty, Required, MinLength(2), MaxLength(100)]  
+        [BindProperty, Required, MinLength(2), MaxLength(100)]  
         public string ProjectName {get;set;}
 
-        // [BindProperty, Required, MinLength(2), MaxLength(100)]
+        [BindProperty, Required, MinLength(2), MaxLength(100)]
         public string Description {get;set;}
 
-        // [BindProperty, Required, MinLength(2), MaxLength(100)]
-        public string StartDate {get;set;}
+        [BindProperty, Required]
+        public DateTime StartDate {get;set;}
 
-        // [BindProperty, Required, MinLength(2), MaxLength(100)]
-        public string DueDate {get;set;}
+        [BindProperty, Required]
+        public DateTime DueDate {get;set;}
 
 
         public async Task<IActionResult> OnPostAsync()
