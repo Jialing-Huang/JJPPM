@@ -17,7 +17,6 @@
 	- Create user case draft
 
 
-
 ----- 8/27/2020 -----
 
 * Jialing
@@ -41,7 +40,6 @@
 	- NO
 
 
-
 ----- 8/28/2020 -----
 
 * Jialing
@@ -55,7 +53,6 @@
 3. Issues
 	- NO
 
-
 * Jeonghoon
 1. Done since last scrum:
 	- Modified user login page and register page
@@ -64,3 +61,39 @@
 	- Create Task form page
 3. Issues
 	- I need to figure out how to modify default profile page.
+	
+	
+----- 8/29/2020 -----
+
+* Jialing
+1. Done since last scrum:
+	- Updated the project list page
+        - Updated the project creating page
+2. To do until next scrum:
+	- Add delete function for project page
+	- Create Update project page
+	- Improve UI
+3. Issues
+	- NO
+
+* Jeonghoon
+1. Done since last scrum:
+	- Modified default user profile page.
+	- Create Task, TaskPriority, TaskStatus model.
+2. To do until next scrum:
+	- Create project board page
+3. Issues
+	- NO
+	
+	
+----- 8/31/2020 -----
+
+* Jialing
+1. Done since last scrum:
+2. To do until next scrum:
+3. Issues
+
+* Jeonghoon
+1. Done since last scrum:
+2. To do until next scrum:
+3. Issues

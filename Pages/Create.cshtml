@@ -4,10 +4,6 @@
     ViewData["Title"] = "Add a new project";
 }
 
-public string  {get; set;}
-        public string  {get; set;}
-        public string  {get; set;}
-        public string  {get; set;}
 
 <h1>Add a new project</h1>
 <form method="post">
@@ -31,7 +27,7 @@ public string  {get; set;}
 
   <div class="form-group">
     <label asp-for="DueDate"></label>
-    <textarea asp-for="DueDate" class="form-control form-control-sm"></textarea>              
+    <input asp-for="DueDate" class="form-control form-control-sm" />             
     <span asp-validation-for="DueDate"></span>
   </div>
   
