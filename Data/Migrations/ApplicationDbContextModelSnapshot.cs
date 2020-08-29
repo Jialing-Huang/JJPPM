@@ -93,6 +93,23 @@ namespace JJPPM.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TaskPriority");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "HIGH"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "NORMAL"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "LOW"
+                        });
                 });
 
             modelBuilder.Entity("JJPPM.Models.TaskStatus", b =>
@@ -107,6 +124,23 @@ namespace JJPPM.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TaskStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "TODO"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "DOING"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "DONE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
