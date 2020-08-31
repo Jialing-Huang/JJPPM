@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace JJPPM.Data.Migrations
+namespace JJPPM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200829153650_CreateDatabase")]
+    [Migration("20200830005659_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -95,6 +95,23 @@ namespace JJPPM.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TaskPriority");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "HIGH"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "NORMAL"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "LOW"
+                        });
                 });
 
             modelBuilder.Entity("JJPPM.Models.TaskStatus", b =>
@@ -109,6 +126,23 @@ namespace JJPPM.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TaskStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "TODO"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "DOING"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "DONE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -317,7 +351,7 @@ namespace JJPPM.Data.Migrations
             modelBuilder.Entity("JJPPM.Models.Task", b =>
                 {
                     b.HasOne("JJPPM.Models.JProject", "Project")
-                        .WithMany()
+                        .WithMany("Tasks")
                         .HasForeignKey("ProjectId");
 
                     b.HasOne("JJPPM.Models.TaskPriority", "TaskPriority")

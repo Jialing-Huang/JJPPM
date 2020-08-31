@@ -3,16 +3,14 @@ using System;
 using JJPPM.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace JJPPM.Data.Migrations
+namespace JJPPM.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200829161751_PopulateData")]
-    partial class PopulateData
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -351,7 +349,7 @@ namespace JJPPM.Data.Migrations
             modelBuilder.Entity("JJPPM.Models.Task", b =>
                 {
                     b.HasOne("JJPPM.Models.JProject", "Project")
-                        .WithMany()
+                        .WithMany("Tasks")
                         .HasForeignKey("ProjectId");
 
                     b.HasOne("JJPPM.Models.TaskPriority", "TaskPriority")

@@ -1,0 +1,12 @@
+﻿@page
+@model JJPPM.Pages.ProjectBoardModel
+@{
+  ViewData["Title"] = "Project Board";
+}
+<h1>Project Name</h1>
+<div class="d-md-flex justify-content-between" style="margin-top: 30px;">
+  @foreach (var tasks in Model.Tasks)
+  {
+    @await Html.PartialAsync("_ProjectBoardPartial", tasks)
+  }
+</div>

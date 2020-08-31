@@ -10,7 +10,7 @@ namespace JJPPM.Models
     public DateTime DueDate { get; set; }
     public TaskStatus TaskStatus { get; set; }
     public TaskPriority TaskPriority { get; set; }
-    public JProject Project { get; set; }
+    public virtual JProject Project { get; set; }
     // JH, 2020-08-29
     // for future use.
     // sharing document between users

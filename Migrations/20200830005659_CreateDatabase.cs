@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace JJPPM.Data.Migrations
+namespace JJPPM.Migrations
 {
     public partial class CreateDatabase : Migration
     {
@@ -242,6 +242,36 @@ namespace JJPPM.Data.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                 });
+
+            migrationBuilder.InsertData(
+                table: "TaskPriority",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "HIGH" });
+
+            migrationBuilder.InsertData(
+                table: "TaskPriority",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 2, "NORMAL" });
+
+            migrationBuilder.InsertData(
+                table: "TaskPriority",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 3, "LOW" });
+
+            migrationBuilder.InsertData(
+                table: "TaskStatus",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 1, "TODO" });
+
+            migrationBuilder.InsertData(
+                table: "TaskStatus",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 2, "DOING" });
+
+            migrationBuilder.InsertData(
+                table: "TaskStatus",
+                columns: new[] { "Id", "Name" },
+                values: new object[] { 3, "DONE" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
