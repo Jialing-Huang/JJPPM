@@ -25,13 +25,13 @@ namespace JJPPM.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DueDate")
+                    b.Property<DateTime>("DueDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("ProjectName")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("StartDate")
+                    b.Property<DateTime>("StartDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UserId")
@@ -42,6 +42,105 @@ namespace JJPPM.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Projects");
+                });
+
+            modelBuilder.Entity("JJPPM.Models.Task", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DueDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("TaskPriorityId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("TaskStatusId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProjectId");
+
+                    b.HasIndex("TaskPriorityId");
+
+                    b.HasIndex("TaskStatusId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Tasks");
+                });
+
+            modelBuilder.Entity("JJPPM.Models.TaskPriority", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TaskPriority");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "HIGH"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "NORMAL"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "LOW"
+                        });
+                });
+
+            modelBuilder.Entity("JJPPM.Models.TaskStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TaskStatus");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "TODO"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "DOING"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "DONE"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -242,6 +341,25 @@ namespace JJPPM.Data.Migrations
 
             modelBuilder.Entity("JJPPM.Models.JProject", b =>
                 {
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("JJPPM.Models.Task", b =>
+                {
+                    b.HasOne("JJPPM.Models.JProject", "Project")
+                        .WithMany()
+                        .HasForeignKey("ProjectId");
+
+                    b.HasOne("JJPPM.Models.TaskPriority", "TaskPriority")
+                        .WithMany()
+                        .HasForeignKey("TaskPriorityId");
+
+                    b.HasOne("JJPPM.Models.TaskStatus", "TaskStatus")
+                        .WithMany()
+                        .HasForeignKey("TaskStatusId");
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
