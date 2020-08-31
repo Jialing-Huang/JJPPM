@@ -69,3 +69,14 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+
+#projectitem {
+  padding:20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightskyblue;
+}
+
+.btn{
+  margin: 5px;
+}

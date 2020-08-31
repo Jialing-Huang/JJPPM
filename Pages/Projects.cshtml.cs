@@ -39,7 +39,7 @@ namespace JJPPM.Pages
                 await _db.SaveChangesAsync();
             }
 
-            return RedirectToPage("Index");
+            return RedirectToPage("Projects");
         }
     }
 }
