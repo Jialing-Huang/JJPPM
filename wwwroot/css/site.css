@@ -81,3 +81,15 @@ body {
 .project-board-bg-color {
   background: #e3e2df;
 }
+
+/* Jinaling */
+#projectitem {
+  padding: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: lightskyblue;
+}
+
+.btn {
+  margin: 5px;
+}
