@@ -107,3 +107,25 @@
 	- complete the project board
 3. Issues
 	- NO
+
+
+----- 9/1/2020 -----
+
+* Jialing
+1. Done since last scrum:
+	- Implemented CreateTask page
+	- Doing Update/Delete Task page
+2. To do until next scrum:
+	- Update/Delete Task page
+3. Issues
+	- Naming conflict Task Model
+	- Need to figure out how to get TaskStatus and TaskPriority table information 
+	  for create/update task form
+
+* Jeonghoon
+1. Done since last scrum:
+	- Fixed a bug using datetime-picker input in the Project/Task pages
+2. To do until next scrum:
+	- Complete the project board
+3. Issues
+	- Errros occured in project board when we create new database.
