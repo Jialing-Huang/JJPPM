@@ -14,60 +14,63 @@ using JJPPM.Data;
 
 namespace JJPPM.Pages
 {
-    public class UpdateModel : PageModel
+  public class UpdateModel : PageModel
+  {
+    private readonly ApplicationDbContext db;
+    public UpdateModel(ApplicationDbContext db) => this.db = db;
+
+    [BindProperty(SupportsGet = true)]
+    public int Id { get; set; }
+
+    [BindProperty, Required, MinLength(2), MaxLength(100)]
+    public string ProjectName { get; set; }
+
+    [BindProperty, Required, MinLength(2), MaxLength(100)]
+    public string Description { get; set; }
+
+    [BindProperty]
+    [DataType(DataType.DateTime)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+    public DateTime StartDate { get; set; }
+
+    [BindProperty]
+    [DataType(DataType.DateTime)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+    public DateTime DueDate { get; set; }
+
+    public async Task<IActionResult> OnGetAsync()
     {
-        private readonly ApplicationDbContext db;
-        public UpdateModel(ApplicationDbContext db) => this.db = db;
+      JProject project = await db.Projects.FindAsync(Id);
 
-        [BindProperty(SupportsGet = true)]
-        public int Id { get; set; }
+      if (project == null)
+      {
+        return RedirectToPage("Projects");
+      }
 
-        [BindProperty, Required, MinLength(2), MaxLength(100)]
-        public string ProjectName { get; set; }
+      ProjectName = project.ProjectName;
+      Description = project.Description;
+      StartDate = project.StartDate;
+      DueDate = project.DueDate;
 
-        [BindProperty, Required, MinLength(2), MaxLength(100)]
-        public string Description { get; set; }
-
-        [BindProperty]
-        public DateTime StartDate { get; set; }
-
-        [BindProperty]
-        public DateTime DueDate { get; set; }
-
-
-        public async Task<IActionResult> OnGetAsync()
-        {
-            JProject project = await db.Projects.FindAsync(Id);
-
-            if (project == null)
-            {
-                return RedirectToPage("Projects");
-            }
-        
-            ProjectName = project.ProjectName;
-            Description = project.Description;
-            StartDate = project.StartDate;
-            DueDate = project.DueDate;
-           
-            return Page();
-        } 
-
-         public async Task<IActionResult> OnPostAsync()
-        {
-            if (ModelState.IsValid)
-            {
-                var project = db.Projects.First(f => f.Id == Id);
-
-                project.ProjectName = ProjectName;
-                project.Description = Description;
-                project.StartDate = StartDate;
-                project.DueDate = DueDate;
-
-                await db.SaveChangesAsync();
-
-                return RedirectToPage("UpdateSuccess");
-            }
-            return Page();
-        }
+      return Page();
     }
+
+    public async Task<IActionResult> OnPostAsync()
+    {
+      if (ModelState.IsValid)
+      {
+        var project = db.Projects.First(f => f.Id == Id);
+
+        project.ProjectName = ProjectName;
+        project.Description = Description;
+        project.StartDate = StartDate;
+        project.DueDate = DueDate;
+
+        await db.SaveChangesAsync();
+
+        return RedirectToPage("UpdateSuccess");
+      }
+      return Page();
+    }
+  }
 }

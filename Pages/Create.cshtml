@@ -21,13 +21,16 @@
 
    <div class="form-group">
     <label asp-for="StartDate"></label>
-    <input asp-for="StartDate" class="form-control form-control-sm" />                
+    <input asp-for="StartDate" class="form-control form-control-sm" type="datetime-local" />
     <span asp-validation-for="StartDate"></span>
   </div>
 
   <div class="form-group">
     <label asp-for="DueDate"></label>
-    <input asp-for="DueDate" class="form-control form-control-sm" />             
+    <input asp-for="DueDate" class="form-control form-control-sm" type="datetime-local" />
+    @* JH, 2020-08-31 *@
+    @* Same as above *@
+    @* @Html.TextBoxFor(m => m.DueDate, "{0:yyyy-MM-ddTHH:mm}", new { @class = "form-control form-control-sm", type = "datetime-local" }) *@
     <span asp-validation-for="DueDate"></span>
   </div>
   
@@ -37,5 +40,13 @@
   </p>
 </form>
 @section scripts{
-<partial name="_ValidationScriptsPartial"></partial>
+  <partial name="_ValidationScriptsPartial"></partial>
+
+  <script>
+
+//    $(".datepicker").datetimepicker({ format: 'dd/mm/yyyy', autoclose: true, todayBtn: 'linked' })
+//    $(function() {
+//      $('#datetimepicker').datetimepicker();
+//    });
+  </script>
 }
