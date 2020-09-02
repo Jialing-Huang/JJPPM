@@ -56,7 +56,8 @@ namespace JJPPM
         options.Password.RequiredUniqueChars = 1;
 
         // Lockout settings.
-        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+        // set for testing (1 day)
+        options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1440);
         options.Lockout.MaxFailedAccessAttempts = 5;
         options.Lockout.AllowedForNewUsers = true;
 

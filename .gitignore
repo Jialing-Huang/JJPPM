@@ -8,6 +8,7 @@
 
 # Database
 app.db
+app.db*
 
 # User-specific files
 *.suo

@@ -21,6 +21,7 @@ namespace JJPPM.Pages
 
     [BindProperty(SupportsGet = true)]
     public int Id { get; set; }   // ProjectId
+    public string ProjectName { get; set; }
 
     public List<JTaskPriority> TaskPriorities { get; set; }
     public List<JTaskStatus> TaskStatuses { get; set; }
@@ -29,6 +30,7 @@ namespace JJPPM.Pages
 
     public void OnGet()
     {
+      ProjectName = _projectTaskService.GetProjectName(Id);
       TaskPriorities = _projectTaskService.GetTaskPriorityList();
       TaskStatuses = _projectTaskService.GetTaskStatusList();
 
