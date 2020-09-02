@@ -44,7 +44,7 @@ namespace JJPPM.Data.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("JJPPM.Models.Task", b =>
+            modelBuilder.Entity("JJPPM.Models.JTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -346,7 +346,7 @@ namespace JJPPM.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("JJPPM.Models.Task", b =>
+            modelBuilder.Entity("JJPPM.Models.JTask", b =>
                 {
                     b.HasOne("JJPPM.Models.JProject", "Project")
                         .WithMany()

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace JJPPM.Models
 {
-  public class Task
+  public class JTask
   {
     public int Id { get; set; }
     public string Description { get; set; }

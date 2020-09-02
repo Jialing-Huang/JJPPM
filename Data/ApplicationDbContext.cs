@@ -11,7 +11,7 @@ namespace JJPPM.Data
   public class ApplicationDbContext : IdentityDbContext
   {
     public DbSet<JProject> Projects { get; set; }
-    public DbSet<Task> Tasks { get; set; }
+    public DbSet<JTask> Tasks { get; set; }
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
