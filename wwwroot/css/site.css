@@ -82,7 +82,7 @@ body {
   background: #e3e2df;
 }
 
-/* Jinaling */
+/* Jialing */
 #projectitem {
   padding: 20px;
   border-style: solid;
@@ -90,6 +90,21 @@ body {
   border-color: lightskyblue;
 }
 
-.btn {
+/* modified by JH, because of confliction against menu-item */
+#projectitem .btn {
   margin: 5px;
+}
+
+/* form error */
+.input-validation-error,
+.input-validation-error:focus {
+  background: #ffccba;
+  color: #d63301;
+}
+.form-control.input-validation-error:focus {
+  border-color: #d63301;
+  box-shadow: 0 0 0 0.2rem rgba(255, 123, 123, 0.5);
+}
+.field-validation-error {
+  color: #be3e16;
 }

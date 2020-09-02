@@ -12,6 +12,6 @@ namespace JJPPM.Models
     public DateTime StartDate { get; set; }
     public DateTime DueDate { get; set; }
     public IdentityUser User { get; set; }
-    public virtual ICollection<Task> Tasks { get; set; }
+    public virtual ICollection<JTask> Tasks { get; set; }
   }
 }

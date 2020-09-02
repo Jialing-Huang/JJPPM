@@ -11,8 +11,11 @@ namespace JJPPM.Services
 {
   public interface IProjectTaskService
   {
-    List<JJPPM.Models.Task> GetTasksByStatus(int projectId, int taskStatusId);
-    Task<List<JJPPM.Models.Task>> GetTasksByStatusAsync(int projectId, int taskStatusId);
+    List<JTask> GetTasksByStatus(int projectId, int taskStatusId);
+    Task<List<JTask>> GetTasksByStatusAsync(int projectId, int taskStatusId);
+    // JH, 2020-09-01
+    List<JTaskStatus> GetTaskStatusList();
+    List<JTaskPriority> GetTaskPriorityList();
   }
 
   public class ProjectTaskService : IProjectTaskService
@@ -20,7 +23,7 @@ namespace JJPPM.Services
     private readonly ApplicationDbContext _db;
     public ProjectTaskService(ApplicationDbContext db) => _db = db;
 
-    public async Task<List<JJPPM.Models.Task>> GetTasksByStatusAsync(int projectId, int taskStatusId)
+    public async Task<List<JTask>> GetTasksByStatusAsync(int projectId, int taskStatusId)
     {
       var project = await _db.Projects.SingleAsync(p => p.Id == projectId);
 
@@ -33,7 +36,7 @@ namespace JJPPM.Services
 
       return tasks;
     }
-    public List<JJPPM.Models.Task> GetTasksByStatus(int projectId, int taskStatusId)
+    public List<JTask> GetTasksByStatus(int projectId, int taskStatusId)
     {
       var project = _db.Projects.Single(p => p.Id == projectId);
 
@@ -47,6 +50,16 @@ namespace JJPPM.Services
         .ToList();
 
       return tasks;
+    }
+
+    public List<JTaskStatus> GetTaskStatusList()
+    {
+      return _db.TaskStatuses.ToList();
+    }
+
+    public List<JTaskPriority> GetTaskPriorityList()
+    {
+      return _db.TaskPriorities.ToList();
     }
   }
 }

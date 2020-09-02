@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace JJPPM.Migrations
+namespace JJPPM.Data.Migrations
 {
     public partial class CreateDatabase : Migration
     {
@@ -47,7 +47,7 @@ namespace JJPPM.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TaskPriority",
+                name: "TaskPriorities",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -56,11 +56,11 @@ namespace JJPPM.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskPriority", x => x.Id);
+                    table.PrimaryKey("PK_TaskPriorities", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
-                name: "TaskStatus",
+                name: "TaskStatuses",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -69,7 +69,7 @@ namespace JJPPM.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TaskStatus", x => x.Id);
+                    table.PrimaryKey("PK_TaskStatuses", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -224,15 +224,15 @@ namespace JJPPM.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Tasks_TaskPriority_TaskPriorityId",
+                        name: "FK_Tasks_TaskPriorities_TaskPriorityId",
                         column: x => x.TaskPriorityId,
-                        principalTable: "TaskPriority",
+                        principalTable: "TaskPriorities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Tasks_TaskStatus_TaskStatusId",
+                        name: "FK_Tasks_TaskStatuses_TaskStatusId",
                         column: x => x.TaskStatusId,
-                        principalTable: "TaskStatus",
+                        principalTable: "TaskStatuses",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
@@ -244,34 +244,34 @@ namespace JJPPM.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "TaskPriority",
+                table: "TaskPriorities",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "HIGH" });
+                values: new object[] { 1, "LOW" });
 
             migrationBuilder.InsertData(
-                table: "TaskPriority",
+                table: "TaskPriorities",
                 columns: new[] { "Id", "Name" },
                 values: new object[] { 2, "NORMAL" });
 
             migrationBuilder.InsertData(
-                table: "TaskPriority",
+                table: "TaskPriorities",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 3, "LOW" });
+                values: new object[] { 3, "HIGH" });
 
             migrationBuilder.InsertData(
-                table: "TaskStatus",
+                table: "TaskStatuses",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "TODO" });
+                values: new object[] { 1, "TO-DO" });
 
             migrationBuilder.InsertData(
-                table: "TaskStatus",
+                table: "TaskStatuses",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 2, "DOING" });
+                values: new object[] { 2, "IN PROGRESS" });
 
             migrationBuilder.InsertData(
-                table: "TaskStatus",
+                table: "TaskStatuses",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 3, "DONE" });
+                values: new object[] { 3, "COMPLETED" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -363,10 +363,10 @@ namespace JJPPM.Migrations
                 name: "Projects");
 
             migrationBuilder.DropTable(
-                name: "TaskPriority");
+                name: "TaskPriorities");
 
             migrationBuilder.DropTable(
-                name: "TaskStatus");
+                name: "TaskStatuses");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

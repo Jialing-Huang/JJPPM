@@ -11,7 +11,11 @@ namespace JJPPM.Data
   public class ApplicationDbContext : IdentityDbContext
   {
     public DbSet<JProject> Projects { get; set; }
-    public DbSet<Task> Tasks { get; set; }
+    public DbSet<JTask> Tasks { get; set; }
+    // JH, 2020-09-01
+    public DbSet<JTaskPriority> TaskPriorities { get; set; }
+    public DbSet<JTaskStatus> TaskStatuses { get; set; }
+
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
         : base(options)
     {
@@ -22,16 +26,16 @@ namespace JJPPM.Data
       base.OnModelCreating(builder);
 
       // JH, 2020-08-29, Populating data for loopup tables
-      builder.Entity<TaskPriority>().HasData(
-        new TaskPriority { Id = 1, Name = "HIGH" },
-        new TaskPriority { Id = 2, Name = "NORMAL" },
-        new TaskPriority { Id = 3, Name = "LOW" }
+      builder.Entity<JTaskPriority>().HasData(
+        new JTaskPriority { Id = 1, Name = "LOW" },
+        new JTaskPriority { Id = 2, Name = "NORMAL" },
+        new JTaskPriority { Id = 3, Name = "HIGH" }
       );
 
-      builder.Entity<TaskStatus>().HasData(
-        new TaskStatus { Id = 1, Name = "TODO" },
-        new TaskStatus { Id = 2, Name = "DOING" },
-        new TaskStatus { Id = 3, Name = "DONE" }
+      builder.Entity<JTaskStatus>().HasData(
+        new JTaskStatus { Id = 1, Name = "TO-DO" },
+        new JTaskStatus { Id = 2, Name = "IN PROGRESS" },
+        new JTaskStatus { Id = 3, Name = "COMPLETED" }
       );
 
       // Customize the ASP.NET Identity model and override the defaults if needed.
