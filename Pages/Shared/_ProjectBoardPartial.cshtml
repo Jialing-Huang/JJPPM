@@ -22,6 +22,16 @@
         @* <h5 class="card-title">@Task.Description</h5> *@
         <p class="card-text">@task.Description</p>
         <p class="card-text">@task.DueDate</p>
+
+        @* This for just testing, need to update *@
+        <div class="text-right">
+          <a class="btn btn-sm" asp-page="/TaskUpdate" asp-route-id="@task.Id" data-toggle="tooltip" data-placement="top" title="Update">
+            <i class='fas fa-edit' style="font-size:20px"></i>
+          </a>
+          <a class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
+            <i class='fas fa-remove' style="font-size:24px"></i>
+          </a>
+        </div>
       </div>
     </div>
   }
