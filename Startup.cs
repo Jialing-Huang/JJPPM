@@ -8,10 +8,12 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
-using JJPPM.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
+using JJPPM.Data;
+using JJPPM.Services;
 
 namespace JJPPM
 {
@@ -34,7 +36,12 @@ namespace JJPPM
           .AddEntityFrameworkStores<ApplicationDbContext>();
       services.AddRazorPages();
 
-      // JH. 2020-08-27
+      // JH, 2020-08-29
+      // Add services
+      services.AddMvc();
+      services.AddTransient<IProjectTaskService, ProjectTaskService>();
+
+      // JH, 2020-08-27
       // Modified some fields
       services.Configure<IdentityOptions>(options =>
       {

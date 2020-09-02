@@ -1,0 +1,39 @@
+﻿@page "{id:int}"
+@model JJPPM.Pages.TaskCreateModel
+@{
+}
+
+<h1>Add a new task</h1>
+<form method="post">
+  <div class="form-group">
+    <label asp-for="Description"></label>
+    <input asp-for="Description" class="form-control form-control-sm" />                
+    <span asp-validation-for="Description"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="DueDate"></label>
+    <input asp-for="DueDate" class="form-control form-control-sm" type="datetime-local" />             
+    <span asp-validation-for="DueDate"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="TaskStatusId">Select a task status</label>
+    <select name="TaskStatusId" asp-items="Model.TaskStatusOptions" class="form-control form-control-sm"></select>
+    <span asp-validation-for="TaskStatusId"></span>
+  </div>
+
+  <div class="form-group">
+    <label asp-for="TaskPriorityId">Select a task Priority</label>
+    <select name="TaskPriorityId" asp-items="Model.TaskPriorityOptions" class="form-control form-control-sm"></select>
+    <span asp-validation-for="TaskPriorityId"></span>
+  </div>
+
+  <p class="actions">
+    @* <input type="hidden" asp-for=".Id" /> *@
+    <button class="btn btn-primary order-button">Add</button>
+  </p>
+</form>
+@section scripts{
+<partial name="_ValidationScriptsPartial"></partial>
+}

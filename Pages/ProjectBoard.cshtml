@@ -1,0 +1,16 @@
+﻿@page "{id:int}"
+@model JJPPM.Pages.ProjectBoardModel
+@{
+  ViewData["Title"] = "Project Board";
+}
+<h1>Project Name</h1>
+<a class="btn btn-primary" asp-page="/TaskCreate" asp-route-id="@Model.Id">Create a Task</a>
+<hr/>
+<div class="d-md-flex justify-content-between" style="margin-top: 30px;">
+  @{ var index = 0; }
+  @foreach (var tasks in Model.Tasks)
+  {
+    @await Html.PartialAsync("_ProjectBoardPartial", tasks,  new ViewDataDictionary(ViewData) { { "TaskStatus", Model.TaskStatuses[index].Name } });
+    index++;
+  }
+</div>

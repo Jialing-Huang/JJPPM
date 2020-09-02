@@ -7,27 +7,23 @@
 <a class="btn btn-primary" asp-page="/Create">Create a Project</a>
 <hr>
 
-@* <body class="container"> *@
-    @foreach (var project in Model.Projects)
-    {
-        <div id="projectitem" class="container">
-            <div class="row">
-                <div class="col-sm-9">                                
-                    <h5 class="card-title">@project.ProjectName</h5>
-                    <p class="card-text">@project.Description</p> 
-                    <p class="card-text">@project.StartDate</p>                   
-                </div>
-                <div class="col-sm-3">
-                    <a class="col btn btn-success">Project Board</a>
-                    <a class="col btn btn-primary" asp-page="/Update" asp-route-id="@project.Id">Update Project</a>
-                    <a class="col btn btn-danger" asp-page-handler="Delete" asp-route-id="@project.Id" onclick="return confirm('Are you sure you want to delete this?')">Delete Project</a>                                                                             
-                </div>
-
+@foreach (var project in Model.Projects)
+{
+    <div id="projectitem" class="container">
+        <div class="row">
+            <div class="col-sm-9">                                
+                <h5 class="card-title">@project.ProjectName</h5>
+                <p class="card-text">@project.Description</p> 
+                <p class="card-text">@project.StartDate</p>                   
             </div>
+            <div class="col-sm-3">
+                <a class="col btn btn-success" asp-page="/ProjectBoard" asp-route-id="@project.Id">Project Board</a>
+                <a class="col btn btn-primary" asp-page="/Update" asp-route-id="@project.Id">Update Project</a>
+                <a class="col btn btn-danger" asp-page-handler="Delete" asp-route-id="@project.Id" onclick="return confirm('Are you sure you want to delete this?')">Delete Project</a>                                                                             
+            </div>
+
         </div>
-        <br>
-            
-    }
-
-@* </body> *@
-
+    </div>
+    <br>
+        
+}

@@ -1,0 +1,28 @@
+@using JJPPM.Models
+@model List<JTask>
+
+<div class="project-board-bg-color rounded p-2" style="height: fit-content; width: 32%;">
+  <div class="text-center"><h4 class="text-dark">@ViewData["TaskStatus"]?.ToString()</h4></div>
+  @foreach (var task in Model)
+  {
+    <div class="card mb-2">
+      @switch (@task.TaskPriority.Id)
+      {
+        case 1: 
+          <div class="card-header bg-light">@task.Description</div>
+          break;
+        case 2:
+          <div class="card-header bg-secondary text-white">@task.Description</div>
+          break;
+        default :
+          <div class="card-header bg-warning">@task.Description</div>
+          break;
+      }      
+      <div class="card-body text-dark">
+        @* <h5 class="card-title">@Task.Description</h5> *@
+        <p class="card-text">@task.Description</p>
+        <p class="card-text">@task.DueDate</p>
+      </div>
+    </div>
+  }
+</div>

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace JJPPM.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200829153650_CreateDatabase")]
+    [Migration("20200902031005_CreateDatabase")]
     partial class CreateDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,7 @@ namespace JJPPM.Data.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("JJPPM.Models.Task", b =>
+            modelBuilder.Entity("JJPPM.Models.JTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,7 +83,7 @@ namespace JJPPM.Data.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("JJPPM.Models.TaskPriority", b =>
+            modelBuilder.Entity("JJPPM.Models.JTaskPriority", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -94,10 +94,27 @@ namespace JJPPM.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaskPriority");
+                    b.ToTable("TaskPriorities");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "LOW"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "NORMAL"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "HIGH"
+                        });
                 });
 
-            modelBuilder.Entity("JJPPM.Models.TaskStatus", b =>
+            modelBuilder.Entity("JJPPM.Models.JTaskStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -108,7 +125,24 @@ namespace JJPPM.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaskStatus");
+                    b.ToTable("TaskStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "TO-DO"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "IN PROGRESS"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "COMPLETED"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -314,17 +348,17 @@ namespace JJPPM.Data.Migrations
                         .HasForeignKey("UserId");
                 });
 
-            modelBuilder.Entity("JJPPM.Models.Task", b =>
+            modelBuilder.Entity("JJPPM.Models.JTask", b =>
                 {
                     b.HasOne("JJPPM.Models.JProject", "Project")
-                        .WithMany()
+                        .WithMany("Tasks")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("JJPPM.Models.TaskPriority", "TaskPriority")
+                    b.HasOne("JJPPM.Models.JTaskPriority", "TaskPriority")
                         .WithMany()
                         .HasForeignKey("TaskPriorityId");
 
-                    b.HasOne("JJPPM.Models.TaskStatus", "TaskStatus")
+                    b.HasOne("JJPPM.Models.JTaskStatus", "TaskStatus")
                         .WithMany()
                         .HasForeignKey("TaskStatusId");
 

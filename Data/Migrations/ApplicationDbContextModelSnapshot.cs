@@ -81,7 +81,7 @@ namespace JJPPM.Data.Migrations
                     b.ToTable("Tasks");
                 });
 
-            modelBuilder.Entity("JJPPM.Models.TaskPriority", b =>
+            modelBuilder.Entity("JJPPM.Models.JTaskPriority", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -92,13 +92,13 @@ namespace JJPPM.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaskPriority");
+                    b.ToTable("TaskPriorities");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "HIGH"
+                            Name = "LOW"
                         },
                         new
                         {
@@ -108,11 +108,11 @@ namespace JJPPM.Data.Migrations
                         new
                         {
                             Id = 3,
-                            Name = "LOW"
+                            Name = "HIGH"
                         });
                 });
 
-            modelBuilder.Entity("JJPPM.Models.TaskStatus", b =>
+            modelBuilder.Entity("JJPPM.Models.JTaskStatus", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -123,23 +123,23 @@ namespace JJPPM.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TaskStatus");
+                    b.ToTable("TaskStatuses");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            Name = "TODO"
+                            Name = "TO-DO"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "DOING"
+                            Name = "IN PROGRESS"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "DONE"
+                            Name = "COMPLETED"
                         });
                 });
 
@@ -349,14 +349,14 @@ namespace JJPPM.Data.Migrations
             modelBuilder.Entity("JJPPM.Models.JTask", b =>
                 {
                     b.HasOne("JJPPM.Models.JProject", "Project")
-                        .WithMany()
+                        .WithMany("Tasks")
                         .HasForeignKey("ProjectId");
 
-                    b.HasOne("JJPPM.Models.TaskPriority", "TaskPriority")
+                    b.HasOne("JJPPM.Models.JTaskPriority", "TaskPriority")
                         .WithMany()
                         .HasForeignKey("TaskPriorityId");
 
-                    b.HasOne("JJPPM.Models.TaskStatus", "TaskStatus")
+                    b.HasOne("JJPPM.Models.JTaskStatus", "TaskStatus")
                         .WithMany()
                         .HasForeignKey("TaskStatusId");
 
