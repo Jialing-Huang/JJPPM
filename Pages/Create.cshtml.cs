@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Identity;
 using JJPPM.Data;
 using JJPPM.Models;
 
@@ -12,8 +13,13 @@ namespace JJPPM.Pages
 {
   public class CreateModel : PageModel
   {
-    private readonly ApplicationDbContext db;
-    public CreateModel(ApplicationDbContext db) => this.db = db;
+    private readonly ApplicationDbContext _db;
+    private readonly UserManager<IdentityUser> _userManager;
+    public CreateModel(ApplicationDbContext db, UserManager<IdentityUser> userManager) 
+    {
+        _db = db;
+        _userManager = userManager;
+    }
 
 
     [BindProperty, Required, MinLength(2), MaxLength(100)]
@@ -29,7 +35,7 @@ namespace JJPPM.Pages
 
     [BindProperty]
     [DataType(DataType.DateTime)]
-    [DisplayFormat(DataFormatString = "{0:2019-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
+    [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
     public DateTime DueDate { get; set; }
 
 
@@ -37,10 +43,17 @@ namespace JJPPM.Pages
     {
       if (ModelState.IsValid)
       {
-        var newProject = new JProject { ProjectName = ProjectName, Description = Description, StartDate = StartDate, DueDate = DueDate };
+        var newProject = new JProject 
+        {
+           ProjectName = ProjectName, 
+           Description = Description, 
+           StartDate = StartDate, 
+           DueDate = DueDate,
+           User = await _userManager.GetUserAsync(User)
+        };
 
-        db.Add(newProject);
-        await db.SaveChangesAsync();  //Database operation as adding new data
+        _db.Add(newProject);
+        await _db.SaveChangesAsync();  //Database operation as adding new data
 
         return RedirectToPage("Projects");
       }
