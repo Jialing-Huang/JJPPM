@@ -151,3 +151,26 @@
 	- Complete the project board
 3. Issues
 	- NO
+	
+	
+----- 9/3/2020 -----
+
+* Jialing
+1. Done since last scrum:
+	- Added user in the Project Create/Update page
+	- Updated link to the task
+	- Created Update Task form page
+2. To do until next scrum:
+	- Complete Update task page
+	- Add delete task function in the Project board
+3. Issues
+	- Errors when connecting Task Update page
+	
+* Jeonghoon
+1. Done since last scrum:
+	- Create link and update UI for the project board
+2. To do until next scrum:
+	- Upgrade CSS all our project
+	- Complete Project Board
+3. Issues
+	- NO
