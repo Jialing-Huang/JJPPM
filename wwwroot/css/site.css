@@ -68,7 +68,10 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  /* JH, 2020-09-03 */
+  font-family: 'Roboto', sans-serif;
 }
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -107,4 +110,14 @@ body {
 }
 .field-validation-error {
   color: #be3e16;
+}
+
+/* JH, 2020-09-03 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Kumbh Sans', sans-serif;
 }
