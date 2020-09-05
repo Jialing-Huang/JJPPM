@@ -1,4 +1,4 @@
-﻿@page "{handler?}/{currentpage?}/{sort?}"
+﻿@page "{handler?}/{currentpage?}/{sort?}/{sortOrder?}"
 @model JJPPM.Pages.ProjectsModel
 @{
 }
@@ -7,12 +7,18 @@
 <a class="btn btn-primary" asp-page="/Create">Create a Project</a>
 
 <div class="d-flex justify-content-end">
-    <div class="form-group">
+    <div class="form-group mr-2">
         <label for="sort">Sorted by </label>
-        <select id="sort" name="sort" class="form-control-sm mr-2">
+        <select id="sort" name="sort" class="form-control-sm">
             <option value="1">Start Date</option>
             <option value="2">Due Date</option>
             <option value="3">Project Name</option>
+        </select>
+    </div>
+    <div class="form-group mr-3">
+        <select id="sort-order" name="sort" class="form-control-sm">
+            <option value="1">Ascending</option>
+            <option value="2">Descending</option>
         </select>
     </div>
     @* For pagination *@
@@ -30,8 +36,8 @@
 
 @section scripts{
     <script>
-        const loadProjects = (currentPage, sortType) => {
-            $('#projects-list').load('/Projects/ProjectsPartial/' + currentPage + '/' + sortType, function() {
+        const loadProjects = (currentPage, sortType, sortOrder) => {
+            $('#projects-list').load('/Projects/ProjectsPartial/' + currentPage + '/' + sortType + '/' + sortOrder, function() {
                 $('[data-toggle="tooltip"]').tooltip();
             });
         }
@@ -43,16 +49,28 @@
                 
                 const currentPage = $(this).attr('value');
                 const sortType = $('#sort').val();
-                loadProjects(currentPage, sortType);
+                const sortOrder = $('#sort-order').val();
+                loadProjects(currentPage, sortType, sortOrder);
             });
         });
+
         $(function () {
             $('#sort').change(function () {
                 const currentPage = $('.page-item.active').attr('value');
                 const sortType = $('#sort').val();
-                loadProjects(currentPage, sortType);
+                const sortOrder = $('#sort-order').val();
+                loadProjects(currentPage, sortType, sortOrder);
             });
         });
+
+        $(function () {
+            $('#sort-order').change(function () {
+                const currentPage = $('.page-item.active').attr('value');
+                const sortType = $('#sort').val();
+                const sortOrder = $('#sort-order').val();
+                loadProjects(currentPage, sortType, sortOrder);
+            });
+        });        
 
         $(window).bind('load', function() { 
            loadProjects(1);

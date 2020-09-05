@@ -11,10 +11,8 @@ namespace JJPPM.Services
 {
   public interface IProjectService
   {
-    List<JProject> GetProjectsByPage(int currentPage);
-    List<JProject> GetProjectsByPage(int currentPage, int sort);
-    Task<List<JProject>> GetProjectsByPageAsync(int currentPage);
-    Task<List<JProject>> GetProjectsByPageAsync(int currentPage, int sort);
+    List<JProject> GetProjectsByPage(int currentPage, int sort, int sortOrder);
+    Task<List<JProject>> GetProjectsByPageAsync(int currentPage, int sort, int sortOrder);
     int GetTotalPages();
     int GetProjectsCount();
     Task<bool> RemoveProjectByIdAsync(int id);
@@ -26,57 +24,34 @@ namespace JJPPM.Services
     public ProjectService(ApplicationDbContext db) => _db = db;
     readonly int PAGE_SIZE = 3;
 
-    public async Task<List<JProject>> GetProjectsByPageAsync(int currentPage)
+    private IQueryable<JProject> SortProjects(int sort, int sortOrder)
     {
-      var projects = await _db.Projects
-          .Skip((currentPage - 1) * PAGE_SIZE)
-          .Take(PAGE_SIZE)
-          .ToListAsync();
-
-      return projects;
-    }
-
-    public async Task<List<JProject>> GetProjectsByPageAsync(int currentPage, int sort)
-    {
-      var sortedList = _db.Projects
-          .OrderBy(p => p.StartDate);
-
-      var projects = await sortedList
-          .Skip((currentPage - 1) * PAGE_SIZE)
-          .Take(PAGE_SIZE)
-          .ToListAsync();
-
-      return projects;
-    }
-
-    public List<JProject> GetProjectsByPage(int currentPage)
-    {
-      var projects = _db.Projects
-          .Skip((currentPage - 1) * PAGE_SIZE)
-          .Take(PAGE_SIZE)
-          .ToList();
-
-      return projects;
-    }
-
-    public List<JProject> GetProjectsByPage(int currentPage, int sort)
-    {
-      IQueryable<JProject> sortedList;
       switch (sort)
       {
         case 2:
-          sortedList = _db.Projects.OrderBy(p => p.DueDate);
-          break;
+          return sortOrder == 1 ? _db.Projects.OrderBy(p => p.DueDate) : _db.Projects.OrderByDescending(p => p.DueDate);
         case 3:
-          sortedList = _db.Projects.OrderBy(p => p.ProjectName);
-          break;
+          return sortOrder == 1 ? _db.Projects.OrderBy(p => p.ProjectName) : _db.Projects.OrderByDescending(p => p.ProjectName);
         case 1:
         default:
-          sortedList = _db.Projects.OrderBy(p => p.StartDate);
-          break;
+          return sortOrder == 1 ? _db.Projects.OrderBy(p => p.StartDate) : _db.Projects.OrderByDescending(p => p.StartDate);
       }
+    }
 
-      var projects = sortedList
+    public async Task<List<JProject>> GetProjectsByPageAsync(int currentPage, int sort = 1, int sortOrder = 1)
+    {
+
+      var projects = await SortProjects(sort, sortOrder)
+          .Skip((currentPage - 1) * PAGE_SIZE)
+          .Take(PAGE_SIZE)
+          .ToListAsync();
+
+      return projects;
+    }
+
+    public List<JProject> GetProjectsByPage(int currentPage, int sort = 1, int sortOrder = 1)
+    {
+      var projects = SortProjects(sort, sortOrder)
           .Skip((currentPage - 1) * PAGE_SIZE)
           .Take(PAGE_SIZE)
           .ToList();

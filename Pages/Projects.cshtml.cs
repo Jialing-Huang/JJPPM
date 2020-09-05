@@ -41,10 +41,10 @@ namespace JJPPM.Pages
       Count = _projectService.GetProjectsCount();
     }
 
-    public PartialViewResult OnGetProjectsPartial(int currentPage, int sort)
+    public PartialViewResult OnGetProjectsPartial(int currentPage, int sort, int sortOrder)
     {
       CurrentPage = currentPage;
-      Projects = _projectService.GetProjectsByPage(currentPage, sort);
+      Projects = _projectService.GetProjectsByPage(currentPage, sort, sortOrder);
       return new PartialViewResult
       {
         ViewName = "_ProjectsPartial",
