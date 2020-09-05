@@ -93,7 +93,16 @@ body {
 
 /* Defined color code */
 .project-board-bg-color {
-  background: #e3e2df;
+  background-color: #e3e2df;
+  /* background-color: var(--jj-light-green); */
+}
+
+.task-footer {
+  display: none;
+}
+
+div.project-board-bg-color .card:hover .task-footer {
+  display: block;
 }
 
 /* Jialing */

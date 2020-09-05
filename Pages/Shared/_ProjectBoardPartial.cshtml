@@ -18,38 +18,45 @@
     }
 } *@
 
-
+@{
+  string cardHeaderStyle = "";
+  string cardBorderStyle = "";
+  string cardTextColor = "text-primary";
+}
 <div class="project-board-bg-color rounded p-2" style="height: fit-content; width: 32%;">
   <div class="text-center"><h4 class="text-dark">@ViewData["TaskStatus"]?.ToString()</h4></div>
   @foreach (var task in Model)
   {
-    <div class="card mb-2">
-      @switch (@task.TaskPriority.Id)
-      {
-        case 1: 
-          <div class="card-header bg-light">@task.Description</div>
-          break;
-        case 2:
-          <div class="card-header bg-secondary text-white">@task.Description</div>
-          break;
-        default :
-          <div class="card-header bg-warning">@task.Description</div>
-          break;
-      }      
-      <div class="card-body text-dark">
-        @* <h5 class="card-title">@Task.Description</h5> *@
+    @switch (@task.TaskPriority.Id)
+    {
+      case 1: 
+        cardBorderStyle = "border-secondary";
+        cardHeaderStyle = "bg-right text-secondary";
+        cardTextColor = "text-secondary";
+        break;
+      case 2:
+        cardBorderStyle = "border-secondary";
+        cardHeaderStyle = "bg-secondary text-white";
+        cardTextColor = "text-secondary";
+        break;
+      default :
+        cardBorderStyle = "border-primary";
+        cardHeaderStyle = "bg-primary text-white";
+        cardTextColor = "text-primary";
+        break;
+    }  
+    <div class="card @cardBorderStyle mb-2">
+      <div class="card-header @cardHeaderStyle py-1"><small>@task.DueDate</small></div>
+      <div class="card-body @cardTextColor">
         <p class="card-text">@task.Description</p>
-        <p class="card-text">@task.DueDate</p>
-
-        @* This for just testing, need to update *@
-        <div class="text-right">
-          <a class="btn btn-sm" asp-page="/TaskUpdate" asp-route-id="@task.Id" data-toggle="tooltip" data-placement="top" title="Update">
-            <i class='fas fa-edit' style="font-size:20px"></i>
-          </a>
-          <a class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Remove" asp-page="/TaskDelete" asp-route-id="@task.Id">
-            <i class='fas fa-remove' style="font-size:24px"></i>
-          </a>
-        </div>
+      </div>
+      <div class="card-footer text-right py-0 task-footer">
+        <a class="btn btn-sm" asp-page="/TaskUpdate" asp-route-id="@task.Id" data-toggle="tooltip" data-placement="top" title="Update">
+          <i class="fas fa-edit"></i>
+        </a>
+        <a class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Remove" asp-page="/TaskDelete" asp-route-id="@task.Id">
+          <i class="fas fa-remove"></i>
+        </a>
       </div>
     </div>
   }
