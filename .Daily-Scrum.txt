@@ -174,3 +174,24 @@
 	- Complete Project Board
 3. Issues
 	- NO
+	
+	
+----- 9/4/2020 -----
+
+* Jialing
+1. Done since last scrum:
+	- Added delete task page in the Project board
+	- tested Update Task page but there is some issues
+2. To do until next scrum:
+	- Continue working for delete and update task logic
+3. Issues
+	- Errors when updating task data
+	
+* Jeonghoon
+1. Done since last scrum:
+	- Upgraded CSS all our project
+2. To do until next scrum:
+	- Continue to work for CSS all our project
+	- Test updata and delete task logic
+3. Issues
+	- NO

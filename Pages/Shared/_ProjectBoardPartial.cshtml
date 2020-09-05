@@ -1,6 +1,24 @@
 @using JJPPM.Models
 @model List<JTask>
 
+@* @functions{
+  private readonly ApplicationDbContext _db;
+
+  public async Task<IActionResult> OnGetDelete(int id)  //How to know the method AND does it connect to delete function
+    {
+      JTask task = await _db.Tasks.FindAsync(id);
+
+      if (task != null)
+      {
+        _db.Remove(task);
+        await _db.SaveChangesAsync();
+      }
+
+      return Page();
+    }
+} *@
+
+
 <div class="project-board-bg-color rounded p-2" style="height: fit-content; width: 32%;">
   <div class="text-center"><h4 class="text-dark">@ViewData["TaskStatus"]?.ToString()</h4></div>
   @foreach (var task in Model)
@@ -28,7 +46,7 @@
           <a class="btn btn-sm" asp-page="/TaskUpdate" asp-route-id="@task.Id" data-toggle="tooltip" data-placement="top" title="Update">
             <i class='fas fa-edit' style="font-size:20px"></i>
           </a>
-          <a class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Remove">
+          <a class="btn btn-sm" data-toggle="tooltip" data-placement="top" title="Remove" asp-page="/TaskDelete" asp-route-id="@task.Id">
             <i class='fas fa-remove' style="font-size:24px"></i>
           </a>
         </div>
