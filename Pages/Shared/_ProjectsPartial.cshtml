@@ -1,0 +1,58 @@
+@using JJPPM.Models
+@model List<JProject>
+
+@foreach (var project in Model)
+{
+  <div id="project-item" class="container mb-3">
+    <div class="row">
+      <div class="col-md-9">
+        <h4>@project.ProjectName</h4>
+        <p>@project.Description</p> 
+      </div>
+      <div class="col-md-3 d-flex flex-column justify-content-between">
+        <div class="text-right project-actions mb-2">
+          <a class="btn btn-info" 
+              asp-page="/ProjectBoard" 
+              asp-route-id="@project.Id" 
+              data-toggle="tooltip" 
+              data-placement="top" 
+              title="Go to Project Board"
+          >
+            <i class='far fa-list-alt'></i>
+          </a>
+          <a class="btn btn-info" 
+              asp-page="/Update" 
+              asp-route-id="@project.Id" 
+              data-toggle="tooltip" 
+              data-placement="top" 
+              title="Update Project"
+          >
+            <i class="fa fa-edit"></i>
+          </a>
+          <a class="btn btn-info" 
+              asp-page-handler="Delete" 
+              asp-route-id="@project.Id" 
+              data-toggle="tooltip" 
+              data-placement="top" 
+              title="Delete Project"
+              onclick="return confirm('Are you sure you want to delete this?')"
+          >
+            <i class='far fa-trash-alt'></i>
+          </a>
+        </div>
+        <div class="project-date mt-auto">
+          <i class="far fa-calendar"
+              data-toggle="tooltip" 
+              data-placement="left" 
+              title="Start Date"></i> @project.StartDate
+          <br/>
+          <i class="far fa-calendar-times"
+              data-toggle="tooltip" 
+              data-placement="left" 
+              title="Due Date"
+          ></i> @project.DueDate
+        </div>
+      </div>
+    </div>
+  </div>
+  }

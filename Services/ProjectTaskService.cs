@@ -24,7 +24,6 @@ namespace JJPPM.Services
   {
     private readonly ApplicationDbContext _db;
     public ProjectTaskService(ApplicationDbContext db) => _db = db;
-
     public async Task<List<JTask>> GetTasksByStatusAsync(int projectId, int taskStatusId)
     {
       var project = await _db.Projects.SingleAsync(p => p.Id == projectId);

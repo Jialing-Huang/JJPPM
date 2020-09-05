@@ -4,12 +4,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 
 using JJPPM.Models;
 using JJPPM.Data;
+using JJPPM.Services;
 
 namespace JJPPM.Pages
 {
@@ -17,41 +19,47 @@ namespace JJPPM.Pages
   public class ProjectsModel : PageModel
   {
     private readonly ILogger<ProjectsModel> _logger;
-    private readonly ApplicationDbContext _db;
-
-    public ProjectsModel(ILogger<ProjectsModel> logger, ApplicationDbContext db)
+    // private readonly ApplicationDbContext _db;
+    private IProjectService _projectService;
+    // public ProjectsModel(ILogger<ProjectsModel> logger, ApplicationDbContext db)
+    public ProjectsModel(ILogger<ProjectsModel> logger, IProjectService projectService)
     {
       _logger = logger;
-      _db = db;
+      _projectService = projectService;
     }
 
     public List<JProject> Projects { get; set; } = new List<JProject>();
+
+    // for paginations
+    public int CurrentPage { get; set; } = 1;
+    public int TotalPages { get; set; }
+    public int Count { get; set; }
+
     public void OnGet()
     {
-      Projects = _db.Projects.ToList();
+      TotalPages = _projectService.GetTotalPages();
+      Count = _projectService.GetProjectsCount();
     }
 
-    public async Task<IActionResult> OnGetDelete(int id)  //How to know the method AND does it connect to delete function
+    public PartialViewResult OnGetProjectsPartial(int currentPage, int sort)
     {
-      JProject project = await _db.Projects
-        .Include(p => p.Tasks)
-        .FirstAsync(p => p.Id == id);
-
-      if (project != null)
+      CurrentPage = currentPage;
+      Projects = _projectService.GetProjectsByPage(currentPage, sort);
+      return new PartialViewResult
       {
-        // JH, 2020-09-05, 
-        // Need to figure out how to handle cascade deletion in SQLite database
-        // Implemented cascading deletion manually
-        foreach (var task in project.Tasks)
-        {
-          _db.Tasks.Remove(task);
-        }
-        _db.Projects.Remove(project);
+        ViewName = "_ProjectsPartial",
+        ViewData = new ViewDataDictionary<List<JProject>>(ViewData, Projects)
+      };
+    }
 
-        await _db.SaveChangesAsync();
-      }
+    public async Task<IActionResult> OnGetDelete(int id)
+    {
+      bool result = await _projectService.RemoveProjectByIdAsync(id);
 
-      return RedirectToPage("Projects");
+      if (result)
+        return RedirectToPage("Projects");
+
+      return Page();
     }
   }
 }

@@ -106,32 +106,32 @@ div.project-board-bg-color .card:hover .task-footer {
 }
 
 /* Jialing */
-#projectitem {
+#project-item {
   padding: 20px;
   border: 1px solid var(--jj-dark-green);
   border-radius: 4px;
   color: var(--jj-black);
 }
 
-#projectitem .project-actions {
+#project-item .project-actions {
   display: none;
 }
 
-/* #projectitem .project-date {
+/* #project-item .project-date {
   position: absolute;
   bottom: 0;
 } */
 
-#projectitem:hover {
+#project-item:hover {
   background-color: var(--jj-light-green);
 }
 
-#projectitem:hover .project-actions {
+#project-item:hover .project-actions {
   display: block;
 }
 
 /* modified by JH, because of confliction against menu-item */
-/* #projectitem .btn {
+/* #project-item .btn {
   margin: 5px;
 } */
 

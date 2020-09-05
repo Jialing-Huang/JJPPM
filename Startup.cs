@@ -40,6 +40,7 @@ namespace JJPPM
       // Add services
       services.AddMvc();
       services.AddTransient<IProjectTaskService, ProjectTaskService>();
+      services.AddTransient<IProjectService, ProjectService>();
 
       // JH, 2020-08-27
       // Modified some fields
