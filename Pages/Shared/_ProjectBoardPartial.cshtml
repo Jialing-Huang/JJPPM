@@ -24,7 +24,7 @@
   string cardTextColor = "text-primary";
 }
 <div class="project-board-bg-color rounded p-2" style="height: fit-content; width: 32%;">
-  <div class="text-center"><h4 class="text-dark">@ViewData["TaskStatus"]?.ToString()</h4></div>
+  <div class="text-center mt-1"><h4 class="text-dark">@ViewData["TaskStatus"]?.ToString()</h4></div>
   @foreach (var task in Model)
   {
     @switch (@task.TaskPriority.Id)

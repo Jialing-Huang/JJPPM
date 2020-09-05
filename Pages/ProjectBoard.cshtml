@@ -8,6 +8,7 @@
     <h1>@Model.ProjectName</h1>
     <p>@Model.ProjectDescription</p>
     <a class="btn btn-primary" asp-page="/TaskCreate" asp-route-id="@Model.Id">Create a Task</a>
+    <a class="btn btn-outline-secondary" asp-page="/Projects">Back to Projects List</a>
   </div>
   <div id="donutchart" class="col-md-5 align-content-right"></div>
 </div>
@@ -44,6 +45,6 @@
 
       var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
       chart.draw(data, options);
-    }    
+    }
   </script>
 }

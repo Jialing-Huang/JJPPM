@@ -13,7 +13,7 @@
 
   <div class="form-group">
     <label asp-for="DueDate"></label>
-    <input asp-for="DueDate" class="form-control form-control-sm" type="datetime-local" value=@Model.DueDate/>             
+    <input asp-for="DueDate" class="form-control form-control-sm" type="datetime-local"/>             
     <span asp-validation-for="DueDate"></span>
   </div>
 
@@ -31,9 +31,11 @@
     <span asp-validation-for="TaskPriorityId"></span>
   </div>
 
-  <p class="actions">
-    @* <input type="hidden" asp-for=".Id" /> *@
-    <button class="btn btn-primary order-button">UPDATE</button>
+  <p class="actions d-flex">
+    <input class="btn btn-primary order-button" type="submit" value="UPDATE"/>
+    <input class="btn btn-outline-danger ml-2" type="reset" value="RESET"/>
+    <a class="btn btn-outline-secondary ml-auto" asp-page="ProjectBoard" asp-route-id="@Model.ProjectId">BACK TO PROJECT BOARD</a>
+
   </p>
 </form>
 @section scripts{

@@ -1,11 +1,13 @@
 ﻿@page
 @model JJPPM.Pages.TaskDeleteModel
 @{
+    ViewData["Title"] = "Delete a task";
 }
-
-<h2>You are going to delete the task @Model.Id</h2>
-<h2>Are you sure you want to delete the task?</h2>
-
-<div class="col-sm-3">
-    <a class="col btn btn-danger" asp-page-handler="Delete">Delete Task</a>                                                                             
+<div class="text-center" style="padding-top: 10%;">
+    <h1>Delete a Task</h1>
+    <p class="h5">You are going to delete the task @Model.Id.<br/>Are you sure you want to delete the task?</p>
+    <div class="mt-3">
+        <a class="btn btn-danger" asp-page-handler="Delete" asp-route-id="@Model.Task.Id">DELETE</a>
+        <a class="btn btn-outline-secondary ml-2" asp-page="/ProjectBoard" asp-route-id="@Model.Task.Project.Id" >CANCEL</a>
+    </div>
 </div>

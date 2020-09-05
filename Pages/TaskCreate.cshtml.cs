@@ -46,21 +46,21 @@ namespace JJPPM.Pages
     public List<SelectListItem> TaskStatusOptions { get; set; }
     public List<SelectListItem> TaskPriorityOptions { get; set; }
 
-    public void OnGet()
+    public async void OnGetAsync()
     {
-      TaskStatusOptions = _db.TaskStatuses.Select(s =>
+      TaskStatusOptions = await _db.TaskStatuses.Select(s =>
           new SelectListItem
           {
             Value = s.Id.ToString(),
             Text = s.Name
-          }).ToList();
+          }).ToListAsync();
 
-      TaskPriorityOptions = _db.TaskPriorities.Select(p =>
+      TaskPriorityOptions = await _db.TaskPriorities.Select(p =>
           new SelectListItem
           {
             Value = p.Id.ToString(),
             Text = p.Name
-          }).ToList();
+          }).ToListAsync();
     }
 
     public async Task<IActionResult> OnPostAsync()

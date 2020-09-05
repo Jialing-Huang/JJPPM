@@ -33,11 +33,21 @@ namespace JJPPM.Pages
 
     public async Task<IActionResult> OnGetDelete(int id)  //How to know the method AND does it connect to delete function
     {
-      JProject project = await _db.Projects.FindAsync(id);
+      JProject project = await _db.Projects
+        .Include(p => p.Tasks)
+        .FirstAsync(p => p.Id == id);
 
       if (project != null)
       {
-        _db.Remove(project);
+        // JH, 2020-09-05, 
+        // Need to figure out how to handle cascade deletion in SQLite database
+        // Implemented cascading deletion manually
+        foreach (var task in project.Tasks)
+        {
+          _db.Tasks.Remove(task);
+        }
+        _db.Projects.Remove(project);
+
         await _db.SaveChangesAsync();
       }
 
