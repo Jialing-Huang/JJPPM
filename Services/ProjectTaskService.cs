@@ -17,6 +17,7 @@ namespace JJPPM.Services
     List<JTaskStatus> GetTaskStatusList();
     List<JTaskPriority> GetTaskPriorityList();
     string GetProjectName(int projectId);
+    string GetProjectDescription(int projectId);
   }
 
   public class ProjectTaskService : IProjectTaskService
@@ -66,6 +67,11 @@ namespace JJPPM.Services
     public string GetProjectName(int projectId)
     {
       return _db.Projects.First(p => p.Id == projectId).ProjectName;
+    }
+
+    public string GetProjectDescription(int projectId)
+    {
+      return _db.Projects.First(p => p.Id == projectId).Description;
     }
   }
 }

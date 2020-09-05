@@ -26,7 +26,7 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: #e3f2fd;">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm jj-navbar-bg border-bottom box-shadow mb-5 py-0" >
             <div class="container">
                 @* JH, 2020-09-01, Added authentication *@
                 <a class="navbar-brand" asp-area="" asp-page=@homePage>
@@ -41,7 +41,7 @@
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             @* JH, 2020-09-01, Added authentication *@
-                            <a class="nav-link text-dark" asp-area="" asp-page=@homePage>Home</a>
+                            <a class="nav-link jj-text-white" asp-area="" asp-page=@homePage>Home</a>
                         </li>
                     </ul>
                 </div>
@@ -56,7 +56,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2020 - JJ-PPM(Personal Project Management) - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            <small>&copy; 2020 - JJ-PPM(Personal Project Management) - <a asp-area="" asp-page="/Privacy">Privacy</a></small>
         </div>
     </footer>
 

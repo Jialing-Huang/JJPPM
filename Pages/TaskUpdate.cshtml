@@ -7,7 +7,7 @@
 <form method="post">
   <div class="form-group">
     <label asp-for="Description"></label>
-    <input asp-for="Description" class="form-control form-control-sm" value=@Model.Description/>                
+    <textarea asp-for="Description" class="form-control form-control-sm" value=@Model.Description></textarea>
     <span asp-validation-for="Description"></span>
   </div>
 

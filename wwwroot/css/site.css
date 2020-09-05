@@ -7,6 +7,16 @@ a.navbar-brand {
   word-break: break-all;
 }
 
+/* JH, color code */
+:root {
+  --jj-black: #17252a;
+  --jj-dark-green: #2b7a78;
+  --jj-green: #3aafa9;
+  --jj-light-green: #def2f1;
+  --jj-white: #feffff;
+  --jj-orange: #ff8400;
+}
+
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
@@ -26,9 +36,10 @@ a {
 }
 
 /* JH, 2020-08-28, hover event for navigation item */
-nav.navbar-light ul.navbar-nav li a:hover,
-nav.navbar-light ul.navbar-nav li button:hover {
-  color: #ff8400 !important;
+nav ul.navbar-nav li a:hover,
+nav ul.navbar-nav li button:hover {
+  color: var(--jj-white) !important;
+  font-weight: bold;
 }
 
 /* Sticky footer styles
@@ -67,7 +78,7 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 50px;
   /* JH, 2020-09-03 */
   font-family: 'Roboto', sans-serif;
 }
@@ -77,7 +88,7 @@ body {
   bottom: 0;
   width: 100%;
   white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  line-height: 50px; /* Vertically center the text there */
 }
 
 /* Defined color code */
@@ -88,15 +99,32 @@ body {
 /* Jialing */
 #projectitem {
   padding: 20px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: lightskyblue;
+  border: 1px solid var(--jj-dark-green);
+  border-radius: 4px;
+  color: var(--jj-black);
+}
+
+#projectitem .project-actions {
+  display: none;
+}
+
+/* #projectitem .project-date {
+  position: absolute;
+  bottom: 0;
+} */
+
+#projectitem:hover {
+  background-color: var(--jj-light-green);
+}
+
+#projectitem:hover .project-actions {
+  display: block;
 }
 
 /* modified by JH, because of confliction against menu-item */
-#projectitem .btn {
+/* #projectitem .btn {
   margin: 5px;
-}
+} */
 
 /* form error */
 .input-validation-error,
@@ -120,4 +148,18 @@ h4,
 h5,
 h6 {
   font-family: 'Kumbh Sans', sans-serif;
+  color: var(--jj-black);
+}
+
+.jj-navbar-bg {
+  background-color: var(--jj-green) !important;
+}
+
+.jj-text-white {
+  color: var(--jj-light-green);
+}
+
+.jj-btn-primary {
+  background-color: var(--jj-black);
+  color: var(--jj-white);
 }

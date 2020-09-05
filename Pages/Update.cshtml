@@ -13,7 +13,7 @@
   </div>
   <div class="form-group">
     <label asp-for="Description"></label>
-    <input asp-for="Description" class="form-control form-control-sm" value=@Model.Description />
+    <textarea asp-for="Description" class="form-control form-control-sm" value=@Model.Description ></textarea>
     <span asp-validation-for="Description"></span>
   </div>
   <div class="form-group">
@@ -26,9 +26,11 @@
     <input asp-for="DueDate" type="datetime-local" class="form-control form-control-sm" />
     <span asp-validation-for="DueDate"></span>
   </div>
-  <p class="actions">
+  <p class="actions d-flex">
     <input type="hidden" value=@Model.Id />
-    <button class="btn btn-warning order-button">UPDATE</button>
+    <input class="btn btn-warning" type="submit" value="UPDATE" />
+    <input class="btn btn-outline-secondary ml-1" type="reset" value="RESET" />
+    <a class="btn btn-outline-secondary ml-auto" asp-page="/Projects">BACK TO PROJECT LIST</a>
   </p>
 </form>
 @section scripts{

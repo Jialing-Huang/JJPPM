@@ -3,8 +3,6 @@
 @{
     ViewData["Title"] = "Add a new project";
 }
-
-
 <h1>Add a new project</h1>
 <form method="post">
   <div class="form-group">
@@ -15,7 +13,7 @@
 
   <div class="form-group">
     <label asp-for="Description"></label>
-    <input asp-for="Description" class="form-control form-control-sm" />                
+    <textarea asp-for="Description" class="form-control form-control-sm"></textarea>
     <span asp-validation-for="Description"></span>
   </div>
 
@@ -34,19 +32,12 @@
     <span asp-validation-for="DueDate"></span>
   </div>
   
-  <p class="actions">
-    @* <input type="hidden" asp-for=".Id" /> *@
-    <button class="btn btn-primary order-button">Add</button>
-  </p>
+  <div class="actions d-flex">
+    <input class="btn btn-primary order-button" type="submit" value="ADD"/>
+    <input class="btn btn-outline-danger ml-2" type="reset" value="RESET"/>
+    <a class="btn btn-outline-secondary ml-auto" asp-page="/Projects">BACK TO PROJECT LIST</a>
+  </div>
 </form>
 @section scripts{
   <partial name="_ValidationScriptsPartial"></partial>
-
-  <script>
-
-//    $(".datepicker").datetimepicker({ format: 'dd/mm/yyyy', autoclose: true, todayBtn: 'linked' })
-//    $(function() {
-//      $('#datetimepicker').datetimepicker();
-//    });
-  </script>
 }

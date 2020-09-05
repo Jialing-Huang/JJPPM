@@ -6,26 +6,28 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+
 using JJPPM.Data;
 using JJPPM.Models;
 
 namespace JJPPM.Pages
 {
+  [Authorize]
   public class CreateModel : PageModel
   {
     private readonly ApplicationDbContext _db;
     private readonly UserManager<IdentityUser> _userManager;
-    public CreateModel(ApplicationDbContext db, UserManager<IdentityUser> userManager) 
+    public CreateModel(ApplicationDbContext db, UserManager<IdentityUser> userManager)
     {
-        _db = db;
-        _userManager = userManager;
+      _db = db;
+      _userManager = userManager;
     }
-
 
     [BindProperty, Required, MinLength(2), MaxLength(100)]
     public string ProjectName { get; set; }
 
-    [BindProperty, Required, MinLength(2), MaxLength(100)]
+    [BindProperty, Required, MinLength(2), MaxLength(500)]
     public string Description { get; set; }
 
     [BindProperty, Required]
@@ -38,18 +40,17 @@ namespace JJPPM.Pages
     [DisplayFormat(DataFormatString = "{0:yyyy-MM-ddTHH:mm}", ApplyFormatInEditMode = true)]
     public DateTime DueDate { get; set; }
 
-
     public async Task<IActionResult> OnPostAsync()
     {
       if (ModelState.IsValid)
       {
-        var newProject = new JProject 
+        var newProject = new JProject
         {
-           ProjectName = ProjectName, 
-           Description = Description, 
-           StartDate = StartDate, 
-           DueDate = DueDate,
-           User = await _userManager.GetUserAsync(User)
+          ProjectName = ProjectName,
+          Description = Description,
+          StartDate = StartDate,
+          DueDate = DueDate,
+          User = await _userManager.GetUserAsync(User)
         };
 
         _db.Add(newProject);
