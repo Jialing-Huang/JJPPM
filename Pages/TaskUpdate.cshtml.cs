@@ -89,22 +89,6 @@ namespace JJPPM.Pages
 
     public async Task<IActionResult> OnPostAsync()
     {
-      // if (ModelState.IsValid)
-      // {
-      //     var updatedTask = new JTask
-      //     {
-      //         Description = Description,
-      //         DueDate = DueDate,
-      //         TaskPriority = await _db.TaskPriorities.FirstAsync(p => p.Id == TaskPriorityId),
-      //         TaskStatus = await _db.TaskStatuses.FirstAsync(s => s.Id == TaskStatusId),
-      //     };
-
-      //     await _db.AddAsync(updatedTask);
-      //     await _db.SaveChangesAsync();  //Database operation as adding new data
-
-      //     return RedirectToPage("ProjectBoard", new { id = Id });
-      // }
-
       if (ModelState.IsValid)
       {
         var updatedTask = await _db.Tasks.Include(t => t.Project).FirstAsync(t => t.Id == Id);
