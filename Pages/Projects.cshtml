@@ -38,7 +38,9 @@
 @section scripts{
     <script>
         const loadProjects = (currentPage, sortType, sortOrder) => {
-            $('#projects-list').load('/Projects/ProjectsPartial/' + currentPage + '/' + sortType + '/' + sortOrder, function() {
+            $('#projects-list')
+                .load('/Projects/ProjectsPartial/' 
+                + currentPage + '/' + sortType + '/' + sortOrder, function() {
                 $('[data-toggle="tooltip"]').tooltip();
             });
         }
