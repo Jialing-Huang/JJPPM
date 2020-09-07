@@ -195,3 +195,21 @@
 	- Test updata and delete task logic
 3. Issues
 	- NO
+
+	
+----- 9/6/2020 -----
+
+* Jialing
+1. Done since last scrum:
+	- Completed delete and update task logic
+	- Completed presentation powerpoint
+2. To do until next scrum: 
+3. Issues
+	
+* Jeonghoon
+1. Done since last scrum:
+	- Completed updating CSS for all our project
+	- Completed test update and delete task logic
+	- Completed presentation powerpoint
+2. To do until next scrum:
+3. Issues
