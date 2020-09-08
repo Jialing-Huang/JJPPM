@@ -32,7 +32,7 @@ namespace JJPPM.Services
         .Collection(p => p.Tasks)
         .Query()
         .Where(task => task.TaskStatus.Id == taskStatusId)
-        .OrderBy(task => task.TaskPriority.Id)
+        .OrderByDescending(task => task.TaskPriority.Id)
         .ToListAsync();
 
       return tasks;
@@ -45,7 +45,7 @@ namespace JJPPM.Services
         .Collection(p => p.Tasks)
         .Query()
         .Where(task => task.TaskStatus.Id == taskStatusId)
-        .OrderBy(task => task.TaskPriority.Id)
+        .OrderByDescending(task => task.TaskPriority.Id)
         .Include(task => task.TaskPriority)
         .Include(task => task.TaskStatus)
         .ToList();

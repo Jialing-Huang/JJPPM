@@ -38,6 +38,10 @@
 @section scripts{
     <script>
         const loadProjects = (currentPage, sortType, sortOrder) => {
+            if (currentPage == undefined) currentPage = 1;
+            if (sortType == undefined) sortType = 1;
+            if (sortOrder == undefined) sortOrder = 1;
+
             $('#projects-list')
                 .load('/Projects/ProjectsPartial/' 
                 + currentPage + '/' + sortType + '/' + sortOrder, function() {

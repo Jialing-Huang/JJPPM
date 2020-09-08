@@ -3,6 +3,8 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 using JJPPM.Models;
 using JJPPM.Data;
@@ -11,10 +13,10 @@ namespace JJPPM.Services
 {
   public interface IProjectService
   {
-    List<JProject> GetProjectsByPage(int currentPage, int sort, int sortOrder);
-    Task<List<JProject>> GetProjectsByPageAsync(int currentPage, int sort, int sortOrder);
-    int GetTotalPages();
-    int GetProjectsCount();
+    List<JProject> GetProjectsByPage(ClaimsPrincipal user, int currentPage, int sort, int sortOrder);
+    Task<List<JProject>> GetProjectsByPageAsync(ClaimsPrincipal user, int currentPage, int sort, int sortOrder);
+    int GetTotalPages(ClaimsPrincipal user);
+    int GetProjectsCount(ClaimsPrincipal user);
     Task<bool> RemoveProjectByIdAsync(int id);
   }
 
@@ -24,24 +26,26 @@ namespace JJPPM.Services
     public ProjectService(ApplicationDbContext db) => _db = db;
     readonly int PAGE_SIZE = 3;
 
-    private IQueryable<JProject> SortProjects(int sort, int sortOrder)
+    private IQueryable<JProject> SortProjects(ClaimsPrincipal user, int sort, int sortOrder)
     {
+      IQueryable<JProject> projects = _db.Projects.Include(p => p.User).Where(p => p.User.UserName == user.Identity.Name);
+
       switch (sort)
       {
         case 2:
-          return sortOrder == 1 ? _db.Projects.OrderBy(p => p.DueDate) : _db.Projects.OrderByDescending(p => p.DueDate);
+          return sortOrder == 1 ? projects.OrderBy(p => p.DueDate) : projects.OrderByDescending(p => p.DueDate);
         case 3:
-          return sortOrder == 1 ? _db.Projects.OrderBy(p => p.ProjectName) : _db.Projects.OrderByDescending(p => p.ProjectName);
+          return sortOrder == 1 ? projects.OrderBy(p => p.ProjectName) : projects.OrderByDescending(p => p.ProjectName);
         case 1:
         default:
-          return sortOrder == 1 ? _db.Projects.OrderBy(p => p.StartDate) : _db.Projects.OrderByDescending(p => p.StartDate);
+          return sortOrder == 1 ? projects.OrderBy(p => p.StartDate) : projects.OrderByDescending(p => p.StartDate);
       }
     }
 
-    public async Task<List<JProject>> GetProjectsByPageAsync(int currentPage, int sort = 1, int sortOrder = 1)
+    public async Task<List<JProject>> GetProjectsByPageAsync(ClaimsPrincipal user, int currentPage, int sort = 1, int sortOrder = 1)
     {
 
-      var projects = await SortProjects(sort, sortOrder)
+      var projects = await SortProjects(user, sort, sortOrder)
           .Skip((currentPage - 1) * PAGE_SIZE)
           .Take(PAGE_SIZE)
           .ToListAsync();
@@ -49,9 +53,9 @@ namespace JJPPM.Services
       return projects;
     }
 
-    public List<JProject> GetProjectsByPage(int currentPage, int sort = 1, int sortOrder = 1)
+    public List<JProject> GetProjectsByPage(ClaimsPrincipal user, int currentPage, int sort = 1, int sortOrder = 1)
     {
-      var projects = SortProjects(sort, sortOrder)
+      var projects = SortProjects(user, sort, sortOrder)
           .Skip((currentPage - 1) * PAGE_SIZE)
           .Take(PAGE_SIZE)
           .ToList();
@@ -59,14 +63,14 @@ namespace JJPPM.Services
       return projects;
     }
 
-    public int GetTotalPages()
+    public int GetTotalPages(ClaimsPrincipal user)
     {
-      return (int)Math.Ceiling(decimal.Divide(_db.Projects.Count(), PAGE_SIZE));
+      return (int)Math.Ceiling(decimal.Divide(_db.Projects.Where(p => p.User.UserName == user.Identity.Name).Count(), PAGE_SIZE));
     }
 
-    public int GetProjectsCount()
+    public int GetProjectsCount(ClaimsPrincipal user)
     {
-      return _db.Projects.Count();
+      return _db.Projects.Where(p => p.User.UserName == user.Identity.Name).Count();
     }
 
     public async Task<bool> RemoveProjectByIdAsync(int id)

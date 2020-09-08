@@ -37,14 +37,14 @@ namespace JJPPM.Pages
 
     public void OnGet()
     {
-      TotalPages = _projectService.GetTotalPages();
-      Count = _projectService.GetProjectsCount();
+      TotalPages = _projectService.GetTotalPages(User);
+      Count = _projectService.GetProjectsCount(User);
     }
 
     public PartialViewResult OnGetProjectsPartial(int currentPage, int sort, int sortOrder)
     {
       CurrentPage = currentPage;
-      Projects = _projectService.GetProjectsByPage(currentPage, sort, sortOrder);
+      Projects = _projectService.GetProjectsByPage(User, currentPage, sort, sortOrder);
       return new PartialViewResult
       {
         ViewName = "_ProjectsPartial",

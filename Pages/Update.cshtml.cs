@@ -25,7 +25,7 @@ namespace JJPPM.Pages
     [BindProperty, Required, MinLength(2), MaxLength(100)]
     public string ProjectName { get; set; }
 
-    [BindProperty, Required, MinLength(2), MaxLength(100)]
+    [BindProperty, Required, MinLength(2), MaxLength(500)]
     public string Description { get; set; }
 
     [BindProperty]
